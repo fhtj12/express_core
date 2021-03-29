@@ -1,0 +1,26 @@
+{
+  "name": "project_temp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@fhtj12.asuscomm.com:50022/volume1/homes/git/project_temp.git"
+  },
+  "author": "tirico",
+  "license": "ISC",
+  "dependencies": {
+    "crypto": "^1.0.1",
+    "express": "^4.17.1",
+    "messageformat": "^2.3.0",
+    "mongoose": "^5.8.0",
+    "mybatis-mapper": "^0.6.5",
+    "mysql": "^2.17.1",
+    "properties-reader": "^0.3.1",
+    "redis": "^2.8.0"
+  }
+}
