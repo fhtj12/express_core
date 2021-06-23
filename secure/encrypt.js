@@ -1,6 +1,6 @@
-var util = require('../util/util');
-var exception = require('../system/exception');
-var server_config = require('../system/properties_manager').server_config;
+const util = require('../util/util');
+const exception = require('../system/exception');
+const server_config = require('../system/properties_manager').server_config;
 
 const saltRounds = server_config['SALT_ROUND'];
 
@@ -12,7 +12,7 @@ const saltRounds = server_config['SALT_ROUND'];
  * 
  * @author tirico
  */
-var toHash = function(base_str, hash, digest) {
+const toHash = function(base_str, hash, digest) {
     util.checkArgs([base_str, hash, digest]);
 
     return crypto.createHash(hash).update(base_str).digest(digest);
@@ -24,7 +24,7 @@ var toHash = function(base_str, hash, digest) {
  * 
  * @author tirico
  */
-var toBcrypt = function(base_str) {
+const toBcrypt = function(base_str) {
     util.checkArgs([base_str]);
         
     bcrypt.genSalt(saltRounds, function(err, salt) {
@@ -45,7 +45,7 @@ var toBcrypt = function(base_str) {
  * @param {String} plain_text @description 암호화 되어 있지 않은 일반 문자열
  * @param {String} crypt_text @description 암호화 되어 있는 문자열
  */
-var bcryptCompare = function(plain_text, crypt_text) {
+const bcryptCompare = function(plain_text, crypt_text) {
     util.checkArgs([plain_text, crypt_text]);
 
     bcrypt.compare(plain_text, crypt_text, function(err, res) {

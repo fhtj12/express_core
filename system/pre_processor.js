@@ -1,8 +1,7 @@
-var mysql = require('mysql');
+const mysql = require('mysql');
 
-var util = require('../util/util');
-var exception = require('../system/exception');
-var collection_util = require('../util/collection_util');
+const util = require('../util/util');
+const collection_util = require('../util/collection_util');
 
 /**
  * 전처리 함수.
@@ -16,22 +15,20 @@ var collection_util = require('../util/collection_util');
  * 
  * @author tirico
  */
-var process = function(url, arg_array, session_check) {
+const process = function(url, arg_array, session_check) {
     return new Promise(function(resolve, reject) {
         try {
 
             // request query to Map
-            var url_query_map = collection_util.objToMap(url.query);
+            const url_query_map = collection_util.objToMap(url.query);
 
             // url query escape
-            var escaped_query_map = new Map();
+            let escaped_query_map = new Map();
             url_query_map.forEach((value, key, mapObject) => {
                 escaped_query_map.set(mysql.escape(key), mysql.escape(value));
             });
 
-            if(util.checkArgsEmpty(escaped_query_map)) {
-                throw exception('CME1001'); // CME1001=Request Parameter is empty
-            }
+            util.checkArgsEmpty(escaped_query_map);
 
             // check query argument
             if(!util.isEmpty(arg_array)) {

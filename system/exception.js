@@ -10,7 +10,7 @@ const message = require('../system/message_manager');
  * 
  * @author tirico
  */
-var getError = function(key) {
+const getError = function(key) {
     if(key === null || key === undefined) {
         return new Error('CME0002'); // CME0002=Error Key is Empty
     }
@@ -29,7 +29,7 @@ var getError = function(key) {
  * 
  * @author tirico
  */
-var getErrorWithFormat = function(key, param) {
+const getErrorWithFormat = function(key, param) {
     if(key === null || key === undefined) {
         return new Error('CME0002'); // CME0002=Error Key is Empty
     }
@@ -47,7 +47,7 @@ var getErrorWithFormat = function(key, param) {
  * @author tirico
  */
 module.exports = function() {
-    var length = arguments.length;
+    const length = arguments.length;
 
     switch(length) {
         case 1:

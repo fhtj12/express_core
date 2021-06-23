@@ -3,15 +3,15 @@ const mysql = require('mysql');
 const dbConfig = require('./mysql_config');
 const mybatis = require('./mybatis');
 
-var db_pool = mysql.createPool(dbConfig);
+const db_pool = mysql.createPool(dbConfig);
 
 mybatis.createMapper();
 
-var select = function(namespace, query_name, param) {
+const select = function(namespace, query_name, param) {
     return new Promise(function(resolve, reject) {
         db_pool.getConnection(function(err, connection, callback) {
             if(!err) {
-                var query = mybatis.getStatement(namespace, query_name, param);
+                const query = mybatis.getStatement(namespace, query_name, param);
                 connection.query(query, function(err, results, fields, callback) {
                     connection.release();
                     resolve(results);

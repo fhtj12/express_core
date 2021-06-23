@@ -1,4 +1,4 @@
-var pre_processor = require('../system/pre_processor');
+const pre_processor = require('../system/pre_processor');
 
 module.exports = function(app) {
     /**

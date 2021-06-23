@@ -1,28 +1,28 @@
 /**
  * npm library & framework
  */
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
 
 /**
  * init router
  */
-var login_router = require('./router/login_router')(app);
+const login_router = require('./router/login_router')(app);
 
 /**
  * user library & framework
  */
-var server_check = require('./system/server_check');
+const server_check = require('./system/server_check');
 
 /**
  * configuration load
  */
-var server_config = require('./system/properties_manager').server_config;
+const server_config = require('./system/properties_manager').server_config;
 
 /**
  * init server
  */
-var server = app.listen(server_config['PORT'], function() {
+const server = app.listen(server_config['PORT'], function() {
     server_check.serverConditionCheck(server_config['PORT'])
     .catch(function(error) {
         console.log(error);

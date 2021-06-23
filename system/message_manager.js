@@ -13,12 +13,12 @@ const mf_basic = new message_format(82); // 국가번호 82번
  * 
  * @author tirico
  */
-var getMessage = function(key) {
+const getMessage = function(key) {
     if(key === null || key === undefined) {
         throw new Error(message['CME0002']); // CME0002=Message Key is Empty
     }
 
-    var msg = message[key];
+    const msg = message[key];
 
     if(msg === null || msg === undefined) {
         throw new Error(message['CME0001'] + ':' + key); // CME0001=Undefined Message
@@ -38,21 +38,22 @@ var getMessage = function(key) {
  * 
  * @author tirico
  */
-var getMessageWithFormat = function(key, param) {
+const getMessageWithFormat = function(key, param) {
     if(key === null || key === undefined) {
         throw new Error(message['CME0002']); // CME0002=Message Key is Empty
     }
 
-    var msg_src = message[key];
+    const msg_src = message[key];
 
     if(msg_src === null || msg_src === undefined) {
         throw new Error(message['CME0001'] + ':' + key); // CME0001=Undefined Message
     }
 
-    var msg = mf_basic.compile(msg_src);
+    const msg = mf_basic.compile(msg_src);
 
+    let json;
     if(param instanceof Array) {
-        var json = JSON.stringify(param);
+        json = JSON.stringify(param);
     } else {
         throw new Error(message['CME2001']); // CME2001= Invalid Type argument
     }
@@ -71,22 +72,23 @@ var getMessageWithFormat = function(key, param) {
  * 
  * @author tirico
  */
-var getMessageWithFormatConvertLocale = function(key, param, locale) {
+const getMessageWithFormatConvertLocale = function(key, param, locale) {
     if(key === null || key === undefined) {
         throw new Error(message['CME0002']); // CME0002=Message Key is Empty
     }
 
-    var msg_src = message[key];
+    const msg_src = message[key];
 
     if(msg_src === null || msg_src === undefined) {
         throw new Error(message['CME0001'] + ':' + key); // CME0001=Undefined Message
     }
 
-    var mf = new message_format(locale);
-    var msg = mf.compile(msg_src);
+    const mf = new message_format(locale);
+    const msg = mf.compile(msg_src);
 
+    let json;
     if(param instanceof Array) {
-        var json = JSON.stringify(param);
+        json = JSON.stringify(param);
     } else {
         throw new Error(message['CME2001']); // CME2001= Invalid Type argument
     }
@@ -99,13 +101,13 @@ var getMessageWithFormatConvertLocale = function(key, param, locale) {
  * @param {String} key @description [필수] message.properties 파일에 정의된 에러 코드의 Key를 넣으십시오.
  * @param {Array} param @description [선택] 메세지에 포맷대로 인자를 넣고 싶다면 이 값을 넣으십시오.
  * @param {String} locale @description [선택] 만약 언어와 인코딩을 선택하고 싶을 때, 이 값을 넣으십시오.
- * 
+ *
  * @description arguments 객체를 이용하여 overloading 처럼 구현 하였습니다.
- * 
+ *
  * @author tirico
  */
 module.exports = function() {
-    var length = arguments.length;
+    const length = arguments.length;
 
     switch(length) {
         case 1:

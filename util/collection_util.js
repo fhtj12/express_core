@@ -4,7 +4,7 @@
  * 
  * @author tirico
  */
-var objToMap = function(object) {
+const objToMap = function(object) {
     let map = new Map();
     for(let k of Object.keys(object)) {
         map.set(k, object[k]);

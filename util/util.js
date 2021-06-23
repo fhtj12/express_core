@@ -1,4 +1,4 @@
-var exception = require('../system/exception');
+const exception = require('../system/exception');
 
 /**
  * 특정 변수가 비어있는지 검사.
@@ -6,12 +6,8 @@ var exception = require('../system/exception');
  * 
  * @author tirico
  */
-var isEmpty = function(object) {
-    if(object === null || object === undefined) {
-        return true;
-    } else {
-        return false;
-    }
+const isEmpty = function(object) {
+    return object === null || object === undefined;
 }
 
 /**
@@ -23,24 +19,9 @@ var isEmpty = function(object) {
  * 
  * @author tirico
  */
-var checkArgs = function(data, key_array) {
+const checkArgs = function(data, key_array) {
     if(key_array instanceof Array) {
-
-        if(data instanceof Map) {
-            data.forEach((value, key, mapObject) => {
-                if(isEmpty(value)) {
-                    throw exception('CME1003', [key]); // CME1003=Necessary Parameter is Empty : {0}
-                }
-            });
-        } else if(key_array instanceof Array) {
-            key_array.forEach((item, index, array) => {
-                if(isEmpty(item)) {
-                    throw exception('CME1003', [index]); // CME1003=Necessary Parameter is Empty : {0}
-                }
-            });
-        } else {
-            throw exception('CME2001'); // CME2001=Invalid Type argument
-        }
+        checkArgsEmpty(data);
     } else {
         throw exception('CME2001'); // CME2001=Invalid Type argument
     }
@@ -52,9 +33,9 @@ var checkArgs = function(data, key_array) {
  * 
  * @author tirico
  */
-var checkArgsEmpty = function(data) {
+const checkArgsEmpty = function(data) {
     if(data instanceof Map) {
-        data.forEach((value, key, mapObject) => {
+        data.forEach((value, key) => {
             if(isEmpty(value)) {
                 throw exception('CME1003', [key]); // CME1003=Necessary Parameter is Empty : {0}
             }
