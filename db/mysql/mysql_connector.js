@@ -7,6 +7,19 @@ const db_pool = mysql.createPool(dbConfig);
 
 mybatis.createMapper();
 
+const getCollection = function () {
+    return new Promise(function (resolve, reject) {
+        db_pool.getConnection(function (err, connection, callback) {
+            if (!err) {
+                resolve(connection);
+            } else {
+                connection.release();
+                reject('MDE0001'); // MDE0001=mysql connection failed.
+            }
+        });
+    });
+}
+
 const select = function(namespace, query_name, param) {
     return new Promise(function(resolve, reject) {
         db_pool.getConnection(function(err, connection, callback) {
@@ -49,4 +62,5 @@ const select = function(namespace, query_name, param) {
 
 module.exports =  {
     select : select
+    , getCollection : getCollection
 }

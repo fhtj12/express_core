@@ -10,34 +10,22 @@ const propertiesReader = require('properties-reader');
  */
 
 // server
-const server_config = (
-    propertiesReader('./properties/server_config.properties')
-).getAllProperties();
+const server_config = propertiesReader.builder('./properties/server_config.properties').getAllProperties();
 
 // message
-const message = (
-    propertiesReader('./properties/message.properties')
-).getAllProperties();
+const message = propertiesReader.builder('./properties/message.properties').getAllProperties();
 
 // mybatis
-const mybatis_config = (
-    propertiesReader('./properties/mybatis.properties')
-).getAllProperties();
+const mybatis_config = propertiesReader.builder('./properties/mybatis.properties').getAllProperties();
 
 // mysql
-const mysql_config = (
-    propertiesReader('./properties/' + process.env.NODE_ENV + '/mysql_config.properties')
-).getAllProperties();
+const mysql_config = propertiesReader.builder('./properties/' + process.env.NODE_ENV + '/mysql_config.properties').getAllProperties();
 
 // mongo
-const mongo_config = (
-    propertiesReader('./properties/' + process.env.NODE_ENV + '/mongo_config.properties')
-).getAllProperties();
+const mongo_config = propertiesReader.builder('./properties/' + process.env.NODE_ENV + '/mongo_config.properties').getAllProperties();
 
 // redis
-const redis_config = (
-    propertiesReader('./properties/' + process.env.NODE_ENV + '/redis_config.properties')
-).getAllProperties();
+const redis_config = propertiesReader.builder('./properties/' + process.env.NODE_ENV + '/redis_config.properties').getAllProperties();
 
 module.exports = {
     server_config : server_config,

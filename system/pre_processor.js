@@ -2,6 +2,9 @@ const mysql = require('mysql');
 
 const util = require('../util/util');
 const collection_util = require('../util/collection_util');
+const exception = require('../system/exception');
+
+const mysql_connector = require('../db/mysql/mysql_connector');
 
 /**
  * 전처리 함수.
@@ -41,6 +44,11 @@ const process = function(url, arg_array, session_check) {
             }
 
             // begin mysql transaction
+            mysql_connector.getCollection().then(function (connection) {
+
+            }).catch(function (error) {
+                throw exception(error);
+            });
 
             // logging, resolve
 
